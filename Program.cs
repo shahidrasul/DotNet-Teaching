@@ -81,8 +81,7 @@
             //    Console.WriteLine($"arr122[] = {item}");
             //}
 
-            int result = Assignment_1.Add(value2: 10, value1: 20);
-            Console.WriteLine(result);
+            PracticeTasks.Main1();
 
             //bool isEventOrOdd = Assignment_1.IsEventOrOdd(12);
             //Console.WriteLine($"Even/Odd: {(isEventOrOdd ? "Even" : "Odd")}");
