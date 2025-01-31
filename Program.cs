@@ -109,7 +109,10 @@
 
             //Lecturer_2.string_manipulation();
 
-            PracticeTasks.Main1();
+            //PracticeTasks.Main1();
+            //Lecturer_5.PrintEnum(Day.Friday);
+
+            collections.create_collections();
         }
     }
 }
