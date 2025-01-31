@@ -93,21 +93,23 @@
 
             //Console.WriteLine(strResult);
 
-            try
-            {
-                Lecturer_3.file_handling();
-            }
-            catch (FileNotFoundException ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
+            //try
+            //{
+            //    Lecturer_3.file_handling();
+            //}
+            //catch (FileNotFoundException ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.ToString());
+            //}
 
 
             //Lecturer_2.string_manipulation();
+
+            PracticeTasks.Main1();
         }
     }
 }

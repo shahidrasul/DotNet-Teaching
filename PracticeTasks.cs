@@ -36,7 +36,6 @@
             catch (Exception ex)
             {
                 Console.WriteLine($"An Error Occured: {ex.Message}");
-
             }
         }
 
@@ -55,7 +54,6 @@
                     using (StreamReader reader = new StreamReader(filename))
                     {
                         string content = reader.ReadToEnd();
-
 
                         if (string.IsNullOrEmpty(content))
                         {
@@ -147,17 +145,19 @@
         public static void DeleteFile()
         {
             Console.Write("Enter the name of the File to be deleted: ");
-            string file = Console.ReadLine() + ".txt";
+            string file = @"D:\test\" + Console.ReadLine() + ".txt";
             try
             {
                 if (!File.Exists(file))
                 {
-                    throw new FileNotFoundException("File Not Found!");
+                    Console.WriteLine("File Not Found!");
+                    return;
                 }
+
                 File.Delete(file);
                 Console.WriteLine("File Deleted SuccessFully!");
             }
-            catch (FileNotFoundException ex)
+            catch (DirectoryNotFoundException ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
@@ -168,15 +168,12 @@
             catch (IOException ex)
             {
                 Console.WriteLine($"The File is Locked or Inaccessible");
-
             }
         }
 
         public static void Main1()
         {
-            bool exit = false;
-
-            while (!exit)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("File Operations Menu:");
@@ -188,44 +185,35 @@
                 Console.WriteLine("6. Exit");
                 Console.Write("Please choose an option (1-6): ");
                 string choice = Console.ReadLine();
+                Console.Clear();
 
                 switch (choice)
                 {
                     case "1":
-                        Console.Clear();
                         CreateAndWriteInFile();
                         break;
                     case "2":
-                        Console.Clear();
                         ReadContentOfFile();
                         break;
                     case "3":
-                        Console.Clear();
                         AppendTextToFile();
                         break;
                     case "4":
-                        Console.Clear();
                         FileCopy();
                         break;
                     case "5":
-                        Console.Clear();
                         DeleteFile();
                         break;
                     case "6":
                         Console.WriteLine("Exiting...");
-                        exit = true;
-                        break;
+                        return;
                     default:
                         Console.WriteLine("Invalid option. Please choose between 1 and 6.");
                         break;
                 }
 
-                // Wait for user to press Enter before showing the menu again
-                if (!exit)
-                {
-                    Console.WriteLine("\nPress Enter to return to the menu...");
-                    Console.ReadLine();
-                }
+                Console.WriteLine("\nPress Enter to return to the menu...");
+                Console.ReadLine();
             }
         }
     }
