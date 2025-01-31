@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp12
+﻿using System.Text;
+
+namespace ConsoleApp1
 {
     internal class Assignment_2
     {
@@ -19,7 +21,6 @@
 
         public static void Calculator()
         {
-        case6:
             Console.Clear();
             int firstNumber = GetInputAndValidate("Enter Frist Number: ");
             int secondNumber = GetInputAndValidate("Enter Second Number: ");
@@ -47,10 +48,13 @@
                         {
                             Console.WriteLine("Division Not Possible!");
                         }
-                        else Console.WriteLine($"{firstNumber} / {secondNumber} = {(N1) / secondNumber}");
+                        else Console.WriteLine($"{firstNumber} / {secondNumber} = {(N1) / 0}");
                         break;
                     case "5":
-                        goto case6;
+                        Console.Clear();
+                        firstNumber = GetInputAndValidate("Enter Frist Number: ");
+                        secondNumber = GetInputAndValidate("Enter Second Number: ");
+                        break;
                     case "6":
                         return;
                     default:
@@ -128,40 +132,123 @@
             return number * GetFactorial(number - 1);
         }
 
+        public static void FibonacciSeries(int index)
+        {
+            int firstValue = 0;
+            int secondValue = 0;
+            int fibonacciValue = 0;
+
+            for (int i = 0; i < index; i++)
+            {
+                if (i == 1)
+                    firstValue = i; //for the first increament in fibonacci series 
+
+                fibonacciValue = firstValue + secondValue;
+                Console.WriteLine(fibonacciValue);
+                firstValue = secondValue; //to keep a track of previous value of the previous value
+                secondValue = fibonacciValue; //to keep the track of previous value
+            }
+        }
+
+        public static void FibonacciSeriesRecurssive(int index, int firstValue = 0, int secondValue = 1, int currentIndex = 0)
+        {
+            if (currentIndex >= index) //To  break out of the function when given index is reached
+            {
+                return;
+            }
+
+            Console.WriteLine(firstValue);
+            // replacing first value with second and second value  with the fibonacci number and incresing the current index
+            FibonacciSeriesRecurssive(index, secondValue, firstValue + secondValue, currentIndex + 1);
+        }
+
+
+        public static string ReverseString(string originalString)
+        {
+            StringBuilder reversedString = new StringBuilder();
+            for (int i = originalString.Length - 1; i >= 0; i--) //i is for iteration and thus assigned the length of original String
+            {
+                reversedString.Append(originalString[i]);
+
+            }
+            return reversedString.ToString();
+
+        }
+
+        public static void ReverseStringRecurssive(string originalString, int currentIndex, string reversedString = "")
+        {
+            if (currentIndex < 0)//the condition was not set <= due to the fact that strings start from index 0
+            {
+                Console.WriteLine(reversedString);
+                return;
+            }
+            reversedString += originalString[currentIndex];
+
+            ReverseStringRecurssive(originalString, currentIndex - 1, reversedString);
+        }
+
         public static void RunTasks()
         {
             bool flag = true;
             while (flag)
             {
                 Console.Clear();
-                Console.WriteLine("2nd Assignment Tasks\n1.Calculator\n2.Second Larget Number in an Array\n3.Find Prime Number\n4.Exit");
+                Console.WriteLine("Assignment Tasks Menu");
+                Console.WriteLine("1. Fibonacci Series (Iterative)");
+                Console.WriteLine("2. Fibonacci Series (Recursive)");
+                Console.WriteLine("3. Reverse String");
+                Console.WriteLine("4. Reverse String (Recursive)");
+                Console.WriteLine("5. Calculator");
+                Console.WriteLine("6. Exit");
                 Console.Write("Enter Choice: ");
                 string choice = Console.ReadLine();
+
                 switch (choice)
                 {
                     case "1":
-                        Calculator();
-                        break;
-                    case "2":
-                        FindSecondLargestNumber();
-                        break;
-                    case "3":
                         Console.Clear();
-                        int number = GetInputAndValidate("a");
-                        if (FindPrime(number))
-                        {
-                            Console.WriteLine($"{number} is a Prime Number");
-                        }
-                        else
-                            Console.WriteLine($"{number} is not a Prime Number");
+
+                        int index = GetInputAndValidate("Enter the number of terms for Fibonacci Series: ");
+                        FibonacciSeries(index);
                         Console.WriteLine("Press Any Key To Continue");
                         Console.ReadKey(true);
                         break;
+
+                    case "2":
+                        Console.Clear();
+                        index = GetInputAndValidate("Enter the number of terms for Fibonacci Series  (Recursive): ");
+                        FibonacciSeriesRecurssive(index);
+                        Console.WriteLine("Press Any Key To Continue");
+                        Console.ReadKey(true);
+                        break;
+
+                    case "3":
+                        Console.Clear();
+                        Console.Write("Enter string to reverse: ");
+                        string str = Console.ReadLine();
+                        Console.WriteLine($"Reversed String: {ReverseString(str)}");
+                        Console.WriteLine("Press Any Key To Continue");
+                        Console.ReadKey(true);
+                        break;
+
                     case "4":
+                        Console.Clear();
+                        Console.Write("Enter string to reverse recursively: ");
+                        str = Console.ReadLine();
+                        ReverseStringRecurssive(str, str.Length - 1);
+                        Console.WriteLine("Press Any Key To Continue");
+                        Console.ReadKey(true);
+                        break;
+                    case "5":
+                        Console.Clear();
+                        Calculator();
+                        break;
+                    case "6":
                         flag = false;
                         break;
+
                     default:
-                        Console.WriteLine("Invalid Option. Press Any Key Try Again!");
+                        Console.WriteLine("Invalid Option. Press Any Key to Try Again!");
                         Console.ReadKey(true);
                         break;
                 }

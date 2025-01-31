@@ -81,14 +81,33 @@
             //    Console.WriteLine($"arr122[] = {item}");
             //}
 
-            PracticeTasks.Main1();
+            //int result = Assignment_1.Add(value2: 10, value1: 20);
+            //Console.WriteLine(result);
 
             //bool isEventOrOdd = Assignment_1.IsEventOrOdd(12);
             //Console.WriteLine($"Even/Odd: {(isEventOrOdd ? "Even" : "Odd")}");
             //Assignment_1.Task_2();
 
-            //int result1 = Assignment_2.GetFactorial(4);
-            //Console.WriteLine(result1);
+            //Assignment_2.FibonacciSeries(6);
+            //string strResult = Assignment_2.ReverseString("hello");
+
+            //Console.WriteLine(strResult);
+
+            try
+            {
+                Lecturer_3.file_handling();
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+
+            //Lecturer_2.string_manipulation();
         }
     }
 }
